@@ -40,18 +40,18 @@ If a transaction fails the safety threshold, HiveGuard can either:
 
 HiveGuard uses three specialized agents executing in parallel to keep latency low while improving coverage:
 
-- **Agent 402-A — Code Reviewer (40%)**
+- **Agent A — Code Reviewer (40%)**
   - Scans targets / contract bytecode for malicious logic, signature traps, and hidden drains.
-- **Agent 402-B — Social Scanner (20%)**
+- **Agent B — Social Scanner (20%)**
   - Cross-references off-chain reputation signals and threat intel.
-- **Agent 402-C — Whitelist Checker (40%)**
+- **Agent C — Whitelist Checker (40%)**
   - Verifies addresses against trusted registries, verified factories, and historical interaction footprints.
 
 ### Consensus formula
 
 ```text
 Score = (A × 0.4) + (B × 0.2) + (C × 0.4)
-Pass threshold: 75/100
+Pass threshold: 80/100
 ```
 
 Transactions below the threshold are rejected or routed through the escrow defense layer.
