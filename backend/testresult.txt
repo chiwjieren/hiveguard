@@ -1,0 +1,55 @@
+testcaseresult.txt
+============================================================
+🛡️  HIVEGUARD CONTRACT TEST SUITE
+============================================================
+Network: Monad Testnet
+Account: 0x102121020dCfA1D765dDA06a01D8ee8860b8f9bf
+HiveGuardEngine: 0x996fBA49dBFD37ba7deF90eeCb53733e4bDD0C02
+ERC8004Registry: 0x6E789c2feE2D84DA06D3789C85122eA78F1043DA
+
+============================================================
+TEST: Connection to Monad Testnet
+============================================================
+✅ Connected to Monad testnet. Current block: 32093605
+✅ Account balance: 49.55121824 MON
+✅ HiveGuardEngine contract found at 0x996fBA49dBFD37ba7deF90eeCb53733e4bDD0C02
+✅ MOCK_STAKING whitelisted: True
+
+============================================================
+TEST: Hold Transaction
+============================================================
+✅ MOCK_DRAINER whitelisted: False
+✅ Transaction held. Hash: 593a9676885a89f6531e18ef5820cdc03494a87c526c8385e0f0461d469b2beb
+✅ Tx Status: 1
+✅ Stored tx sender: 0x102121020dCfA1D765dDA06a01D8ee8860b8f9bf
+✅ Stored tx target: 0x0A39F71802D2C32a1528946dedb46eD67C61BA43
+✅ Stored tx value: 1000000000000000
+
+============================================================
+TEST: Record Agent Scores
+============================================================
+✅ Set account as relayer
+✅ Agent scores recorded. Tx: 407649c559cd30ba7749b552f2e3a97e02db6ae313a7e7fb281cf8b3ceff690e
+✅ Stored scores - Agent 1: 95, Agent 2: 88, Agent 3: 92
+
+============================================================
+TEST: Whitelist Bypass Feature
+============================================================
+✅ MOCK_STAKING whitelisted: True
+✅ ✓ Whitelisted target correctly rejected (TARGET_WHITELISTED)
+
+============================================================
+TEST: Blacklist Functionality
+============================================================
+✅ MockMaliciousDrainer added to blacklist. Tx: 311c63e79c82c8cc3cf8ac529706a1f8bc65b31f58d28e75a286395291e5699d
+✅ Is MockMaliciousDrainer blacklisted? True
+
+============================================================
+TEST: ERC8004 Reputation Recording
+============================================================
+✅ Feedback recorded for Agent 1. Tx: 718be6b3370d03f89c8545fde0ffacf90b7e1908d6cd449676df70270a692330
+✅ Agent 1 average rating: 4
+
+============================================================
+✅ TEST SUITE COMPLETE
+============================================================
