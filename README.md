@@ -1,4 +1,3 @@
-````markdown
 <div align="center">
   <img src="https://github.com/chiwjieren/hiveguard/raw/main/public/hivereadme2.png" alt="HiveGuard Banner" width="800" />
 
@@ -18,9 +17,18 @@
 
 ## Overview
 
-HiveGuard acts as an intelligent circuit breaker for web3 interactions. It intercepts outbound transactions (via account abstraction / EIP-7702 flow), sends them through a **three-agent AI swarm**, and returns a clear **PASS / REVERT** outcome with a numeric risk score.
+HiveGuard acts as an intelligent circuit breaker for web3 interactions.
 
-### Core stack
+It intercepts outbound transactions (via account abstraction / EIP-7702 flow), sends them through a **three-agent AI swarm**, and returns a consensus score and verdict (**PASS** / **REVERT**) before the transaction is broadcast.
+
+If a transaction fails the safety threshold, HiveGuard can either:
+
+- **Reject** the transaction outright, or
+- **Route it through an escrow/rollback defense layer** (depending on the configured flow)
+
+---
+
+## Core stack
 
 - **Contracts (Foundry)** — escrow/rollback defense logic on Monad testnet
 - **Backend (FastAPI)** — async agent orchestration + consensus scoring
@@ -46,7 +54,7 @@ Score = (A × 0.4) + (B × 0.2) + (C × 0.4)
 Pass threshold: 75/100
 ```
 
-Transactions below the threshold are rejected or routed through the escrow defense layer (depending on the configured flow).
+Transactions below the threshold are rejected or routed through the escrow defense layer.
 
 ---
 
@@ -81,7 +89,7 @@ Transactions below the threshold are rejected or routed through the escrow defen
 
 - Node.js **18+**
 - Python **3.9+**
-- Foundry (for contract development)
+- [Foundry](https://book.getfoundry.sh/) (for contract development)
 
 ### 1) Smart contracts
 
@@ -154,4 +162,3 @@ cd backend && python -m pytest
 cd frontend && npm run dev
 # Visit http://localhost:3000
 ```
-````
