@@ -1,167 +1,157 @@
-```markdown
+````markdown
 <div align="center">
-  <img src="https://github.com/chiwjieren/hiveguard/raw/main/public/hivereadme2.png" alt="HiveGuard Banner" width="800">
-  
+  <img src="https://github.com/chiwjieren/hiveguard/raw/main/public/hivereadme2.png" alt="HiveGuard Banner" width="800" />
+
   # HiveGuard
-  ### AI-Powered Transaction Firewall for DeFi
-  
-  [![Network: Monad Testnet](https://img.shields.io/badge/Network-Monad_Testnet-blueviolet?style=flat-square)](https://monad.xyz)
-  [![Stack: FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat-square)](https://fastapi.tiangolo.com)
-  [![Stack: Next.js](https://img.shields.io/badge/Frontend-Next.js-000000?style=flat-square)](https://nextjs.org)
-  [![Testing: Foundry](https://img.shields.io/badge/Smart_Contracts-Foundry-FF3E00?style=flat-square)](https://book.getfoundry.sh)
 
-  <p align="center">
-    A decentralized security framework that leverages a specialized AI agent swarm to evaluate, score, and protect DeFi transactions in real-time before they hit the blockchain.
-  </p>
+  **AI-Powered Transaction Firewall for DeFi**
+
+  [![Network: Monad Testnet](https://img.shields.io/badge/Network-Monad_Testnet-blueviolet?style=flat-square)](https://monad.xyz)
+  [![Backend: FastAPI](https://img.shields.io/badge/Backend-FastAPI-009688?style=flat-square)](https://fastapi.tiangolo.com)
+  [![Frontend: Next.js](https://img.shields.io/badge/Frontend-Next.js-000000?style=flat-square)](https://nextjs.org)
+  [![Smart Contracts: Foundry](https://img.shields.io/badge/Smart_Contracts-Foundry-FF3E00?style=flat-square)](https://book.getfoundry.sh)
+
+  A decentralized security framework that leverages a specialized AI agent swarm to evaluate, score, and protect DeFi transactions in real time **before** they hit the blockchain.
 </div>
 
 ---
 
-## ⚡ Overview
+## Overview
 
-**HiveGuard** acts as an intelligent circuit breaker for your web3 interactions. Operating via EIP-7702 account abstraction, it intercepts outbound transactions, routes them through a tri-agent LLM consensus matrix, and dynamically approves or quarantines assets into a smart escrow engine on the Monad testnet.
+HiveGuard acts as an intelligent circuit breaker for web3 interactions. It intercepts outbound transactions (via account abstraction / EIP-7702 flow), sends them through a **three-agent AI swarm**, and returns a clear **PASS / REVERT** outcome with a numeric risk score.
 
-### Core Stack
-*   **Contracts (Foundry):** Secure escrow logic optimized for high-throughput EVM environments.
-*   **Backend (FastAPI):** Asynchronous AI swarm orchestration and consensus scoring.
-*   **Frontend (Next.js):** Real-time analytics dashboard secured with Privy wallet integration.
+### Core stack
 
----
-
-## 🤖 The AI Agent Swarm
-
-HiveGuard utilizes three specialized agents executing in parallel to keep latency minimal and security bulletproof.
-
-
-```
-
-```
-              ┌───────────────────────────┐
-              │    Inbound Transaction    │
-              └─────────────┬─────────────┘
-                            │
-     ┌──────────────────────┼──────────────────────┐
-     ▼                      ▼                      ▼
-
-```
-
-┌──────────────────┐   ┌──────────────────┐   ┌──────────────────┐
-│   Agent 402-A    │   │   Agent 402-B    │   │   Agent 402-C    │
-│  Code Reviewer   │   │  Social Scanner  │   │  Whitelist Check │
-└────────┬─────────┘   └────────┬─────────┘   └────────┬─────────┘
-│                      │                      │
-└──────────────────────┼──────────────────────┘
-▼
-┌─────────────────────────┐
-│ Consensus Score Engine  │
-└─────────────────────────┘
-
-```
-
-*   **Agent 402-A: Code Reviewer (Weight: 40%)** — Scans targets and contract bytecode for malicious logic, signature traps, and hidden drains.
-*   **Agent 402-B: Social Scanner (Weight: 20%)** — cross-references off-chain data, security feeds, and threat intelligence reports for active exploits.
-*   **Agent 402-C: Whitelist Checker (Weight: 40%)** — Verifies addresses against trusted registries, verified factory contracts, and historical interaction footprints.
-
-### 📊 Consensus Formula
-$$Score = (A \times 0.4) + (B \times 0.2) + (C \times 0.4)$$
-
-> **Pass Threshold:** $\ge 75/100$. Transactions scoring below this threshold are automatically routed to the escrow defense layer or rejected.
+- **Contracts (Foundry)** — escrow/rollback defense logic on Monad testnet
+- **Backend (FastAPI)** — async agent orchestration + consensus scoring
+- **Frontend (Next.js)** — real-time dashboard (Privy wallet integration)
 
 ---
 
-## 🗺️ Architecture & Workflow
+## The AI agent swarm
+
+HiveGuard uses three specialized agents executing in parallel to keep latency low while improving coverage:
+
+- **Agent 402-A — Code Reviewer (40%)**
+  - Scans targets / contract bytecode for malicious logic, signature traps, and hidden drains.
+- **Agent 402-B — Social Scanner (20%)**
+  - Cross-references off-chain reputation signals and threat intel.
+- **Agent 402-C — Whitelist Checker (40%)**
+  - Verifies addresses against trusted registries, verified factories, and historical interaction footprints.
+
+### Consensus formula
+
+```text
+Score = (A × 0.4) + (B × 0.2) + (C × 0.4)
+Pass threshold: 75/100
+```
+
+Transactions below the threshold are rejected or routed through the escrow defense layer (depending on the configured flow).
+
+---
+
+## Architecture & workflow
 
 <div align="center">
-  <img src="https://github.com/chiwjieren/hiveguard/raw/main/public/hive_architecture.png" alt="HiveGuard Architecture Flow" width="850">
+  <img src="https://github.com/chiwjieren/hiveguard/raw/main/public/hive_architecture.png" alt="HiveGuard Architecture" width="850" />
 </div>
 
-1. **Activation:** User activates HiveGuard's firewall capabilities natively using an EIP-7702 upgrade.
-2. **Interception:** The user initiates a transaction with an external DeFi protocol.
-3. **Ingestion:** The Next.js frontend captures the payload and dispatches an audit payload to the FastAPI gateway.
-4. **Analysis:** The three-agent swarm processes the data in parallel to maintain execution speed.
-5. **Evaluation:** The backend applies the consensus formula and returns the final risk matrix.
-6. **Resolution:** The UI presents a **PASS** or **REVERT** status. Transactions failing validation trigger an immediate escrow halt and asset refund.
+1. **Activation:** user enables HiveGuard via an EIP-7702 upgrade.
+2. **Interception:** the user initiates a transaction with a DeFi protocol.
+3. **Ingestion:** the frontend captures the payload and sends an audit request to the backend.
+4. **Analysis:** the three agents evaluate in parallel.
+5. **Decision:** the backend returns the consensus score + verdict.
+6. **Result:** UI shows **PASS** or **REVERT**; failing flows trigger escrow halt + refund.
 
 ---
 
-## 📋 Repository Structure
+## Repository structure
 
 | Path | Purpose |
-| :--- | :--- |
-| `contracts/src/HiveGuardEngine.sol` | Master escrow contract handles transaction bridging and emergency rollbacks. |
-| `backend/main.py` | FastAPI engine coordinating parallel agent tasks and parsing LLM scores. |
-| `frontend/src/app/page.tsx` | Main developer security lab dashboard and user workspace. |
+| --- | --- |
+| `contracts/src/HiveGuardEngine.sol` | Master escrow contract (bridging / emergency rollback logic) |
+| `backend/main.py` | FastAPI consensus engine coordinating the agents |
+| `frontend/src/app/page.tsx` | Dashboard UI |
 
 ---
 
-## ⚙️ Environment Configuration
-
-### Backend Setup (`backend/.env`)
-```env
-MONAD_RPC_URL=[https://rpc.testnet.monad.xyz](https://rpc.testnet.monad.xyz)
-HIVEGUARD_ENGINE_ADDRESS=0x...
-
-```
-
-### Frontend Setup (`frontend/.env.local`)
-
-```env
-NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id
-NEXT_PUBLIC_MONAD_RPC=[https://rpc.testnet.monad.xyz](https://rpc.testnet.monad.xyz)
-NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
-
-```
-
----
-
-## 🚀 Quick Start
+## Quick start
 
 ### Prerequisites
 
-* Node.js 18+
-* Python 3.9+
-* Foundry
+- Node.js **18+**
+- Python **3.9+**
+- Foundry (for contract development)
 
-### 1. Smart Contracts
+### 1) Smart contracts
 
 ```bash
 cd contracts
-forge testing
-
+forge test
 ```
 
-### 2. Backend Orchestrator
+### 2) Backend
 
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python main.py
-
 ```
 
-*API engine defaults to:* `http://localhost:8000`
+Backend runs on `http://localhost:8000`.
 
-### 3. Frontend Interface
+### 3) Frontend
 
 ```bash
 cd frontend
 npm install
 npm run dev
-
 ```
 
-*Dashboard defaults to:* `http://localhost:3000`
+Frontend runs on `http://localhost:3000`.
 
 ---
 
-## 🔧 Development Insights
+## Environment configuration
 
-* **Low-Latency Architecture:** Agent interactions rely on fixed scoring weights to optimize response speed and reduce token overhead.
-* **State Management:** Fully deterministic state handling. Frontend updates remain event-driven (Solidity tracking) or immutable (React context).
-* **Caching Layer:** RPC requests and repetitive agent queries are cached for 60 seconds to mitigate network strain and rate-limiting blocks.
+### Backend (`backend/.env`)
 
+```env
+MONAD_RPC_URL=https://rpc.testnet.monad.xyz
+HIVEGUARD_ENGINE_ADDRESS=0x...
 ```
 
+### Frontend (`frontend/.env.local`)
+
+```env
+NEXT_PUBLIC_PRIVY_APP_ID=your_privy_app_id
+NEXT_PUBLIC_MONAD_RPC=https://rpc.testnet.monad.xyz
+NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```
+
+---
+
+## Development notes
+
+- **Low-latency by design:** fixed scoring weights to keep compute + token usage predictable.
+- **State model:** immutable UI state (React) and event-driven onchain logic.
+- **Caching:** RPC results cached for ~60s to minimize redundant calls.
+
+---
+
+## Testing
+
+```bash
+# Contracts
+cd contracts && forge test
+
+# Backend (when tests are added)
+cd backend && python -m pytest
+
+# Frontend (manual)
+cd frontend && npm run dev
+# Visit http://localhost:3000
+```
+````
